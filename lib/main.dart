@@ -1,55 +1,58 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
-  //task 1
+    var fn = calculation('+');
+    print("add : ${fn(5, 4)}");
 
-  int num = 10;
+    fn = calculation('-');
+    print("sub : ${fn(5, 4)}");
 
-  String res = num >0 ? "Pos" : num < 0 ? "Neg" : "Zero";
-  print(res);
+    fn = calculation('*');
+    print("mul : ${fn(5, 4)}");
 
-  //task 2
-  String? name = "Kerolos";
-  print("hello $name");
-  
-  name = null;
-  print("hello ${name ?? "Guest"} ");
+    fn = calculation('/');
+    print("div : ${fn(5, 4)}");
 
+    fn = calculation('**');
+    print("pow : ${fn(5, 4)}");
 
-  //task 3
-  int result = factorial(5);
-  print("Factorial = $result");
-
-  //task 4
-  int x = 5, y = 10;
-  (x,y) = swap(x, y);
-  print("x = $x, y = $y");
-
-  //task5
-  printUserDetails(name: 'Bob', age: 30);
-
+    fn = calculation('%');
+    print("mod : ${fn(5, 4)}");
 
 }
 
-void printUserDetails({ required String name, required int age , String country = 'Unknown'}) {
+num add(num a, num b) => a + b;
 
-  print('Name: $name, Age: $age, Country: $country');
-}
+num sub(num a, num b) => a - b;
 
-(T,T) swap<T> (T a, T b) {
-  return (b, a);
-}
+num mul(num a, num b) => a * b;
 
-int factorial(int n) {
-  if (n < 0) {
-    return -1;
-  } else if (n == 0 || n == 1) {
-    return 1;
-  } else {
-    return n * factorial(n - 1);
+num div(num a, num b) => b != 0 ? a / b : double.infinity;
+
+num mod(num a, num b) => a % b;
+
+num power(num a, num b) => pow(a, b);
+
+Function calculation(String op) {
+  switch (op) {
+    case '+':
+      return add;
+    case '-':
+      return sub;
+    case '*':
+      return mul;
+    case '/':
+      return div;
+    case '%':
+      return mod;
+    case '**':
+      return power;
+    default:
+      throw("error");
   }
 }
-
 
 // class MyApp extends StatelessWidget {
 //   const MyApp({super.key});
